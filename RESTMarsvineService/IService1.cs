@@ -12,7 +12,9 @@ namespace RESTMarsvineService
     [ServiceContract]
     public interface IService1
     {
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "Measurements/")]
+        IList<Measurements> GetAllMeasurements();
 
-       
     }
 }
