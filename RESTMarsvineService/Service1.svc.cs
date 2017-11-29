@@ -18,7 +18,7 @@ namespace RESTMarsvineService
 
         public IList<Measurements> GetAllMeasurements()
         {
-                const string sqlstring = "SELECT * from dbo.Apartments order by id";
+                const string sqlstring = "SELECT * from dbo.Measurement order by id";
 
                 using (var sqlConnection = new SqlConnection(GetConnectionString))
                 {
@@ -48,7 +48,7 @@ namespace RESTMarsvineService
             var ImageLink = reader.GetString(3);
 
 
-            var i = new Measurements { Id = Id, DateTime = Time, dB = dB, ImageLink = ImageLink};
+            var i = new Measurements {Id = Id,DateTime = Time,dB = dB,ImageLink = ImageLink};
 
             return i;
         }
