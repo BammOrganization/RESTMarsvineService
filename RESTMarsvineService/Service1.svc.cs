@@ -53,7 +53,39 @@ namespace RESTMarsvineService
             return i;
         }
 
+        private static Userinfo ReadUserinfo(IDataRecord reader)
+        {
+            var Id = reader.GetInt32(0);
+            var Mail = reader.GetString(1);
+            var Phone = reader.GetInt32(2);
 
+
+            var i = new Userinfo { Id = Id, Mail = Mail, PhoneNo = Phone};
+
+            return i;
+        }
+
+
+        public void UpdateMail(string id, Userinfo user)
+        {
+            SqlConnection conn = new SqlConnection(GetConnectionString);
+            conn.Open();
+
+
+
+            string sql = $"UPDATE Apartment SET Id = @id, Mail = @mail, PhoneNo = @phone WHERE id = '{id}'";
+
+            SqlCommand command = new SqlCommand(sql, conn);
+            command.Parameters.AddWithValue("@id", user.Id);
+            command.Parameters.AddWithValue("@mail", user.Mail);
+            command.Parameters.AddWithValue("@phone", user.PhoneNo);
+
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                var _Userinfo = ReadMeasurements(reader);
+            }
+        }
     }
 
 }
