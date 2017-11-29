@@ -18,7 +18,7 @@ namespace RESTMarsvineService
 
         public IList<Measurements> GetAllMeasurements()
         {
-                const string sqlstring = "SELECT * from dbo.Measurement order by id";
+                const string sqlstring = "SELECT * from dbo.Measurement order by Time";
 
                 using (var sqlConnection = new SqlConnection(GetConnectionString))
                 {
@@ -84,6 +84,29 @@ namespace RESTMarsvineService
             while (reader.Read())
             {
                 var _Userinfo = ReadMeasurements(reader);
+            }
+        }
+
+        public IList<Userinfo> GetAllUsers()
+        {
+            const string sqlstring = "SELECT * from dbo.UserTable order by id";
+
+            using (var sqlConnection = new SqlConnection(GetConnectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = new SqlCommand(sqlstring, sqlConnection))
+                {
+                    using (var reader = sqlCommand.ExecuteReader())
+                    {
+                        var liste = new List<Userinfo>();
+                        while (reader.Read())
+                        {
+                            var _users = ReadUserinfo(reader);
+                            liste.Add(_users);
+                        }
+                        return liste;
+                    }
+                }
             }
         }
     }
