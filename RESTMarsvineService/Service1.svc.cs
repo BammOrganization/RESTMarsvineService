@@ -18,7 +18,7 @@ namespace RESTMarsvineService
 
         public IList<Measurements> GetAllMeasurements()
         {
-                const string sqlstring = "SELECT * from dbo.Measurement order by Time";
+                const string sqlstring = "SELECT * from dbo.Measurement order by Time DESC";
 
                 using (var sqlConnection = new SqlConnection(GetConnectionString))
                 {
