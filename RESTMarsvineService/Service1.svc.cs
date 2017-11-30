@@ -40,30 +40,7 @@ namespace RESTMarsvineService
         }
 
 
-        private static Measurements ReadMeasurements(IDataRecord reader)
-        {
-            var Id = reader.GetInt32(0);
-            var Time = reader.GetDateTime(1);
-            var dB = reader.GetInt32(2);
-            var ImageLink = reader.GetString(3);
 
-
-            var i = new Measurements {Id = Id,DateTime = Time,dB = dB,ImageLink = ImageLink};
-
-            return i;
-        }
-
-        private static Userinfo ReadUserinfo(IDataRecord reader)
-        {
-            var Id = reader.GetInt32(0);
-            var Mail = reader.GetString(1);
-            var Phone = reader.GetInt32(2);
-
-
-            var i = new Userinfo { Id = Id, Mail = Mail, PhoneNo = Phone};
-
-            return i;
-        }
 
 
         public void UpdateMail(string id, Userinfo user)
@@ -108,6 +85,31 @@ namespace RESTMarsvineService
                     }
                 }
             }
+        }
+
+        private static Measurements ReadMeasurements(IDataRecord reader)
+        {
+            var Id = reader.GetInt32(0);
+            var Time = reader.GetDateTime(1);
+            var dB = reader.GetInt32(2);
+            var ImageLink = reader.GetString(3);
+
+
+            var i = new Measurements { Id = Id, DateTime = Time, dB = dB, ImageLink = ImageLink };
+
+            return i;
+        }
+
+        private static Userinfo ReadUserinfo(IDataRecord reader)
+        {
+            var Id = reader.GetInt32(0);
+            var Mail = reader.GetString(1);
+            var Phone = reader.GetInt32(2);
+
+
+            var i = new Userinfo { Id = Id, Mail = Mail, PhoneNo = Phone };
+
+            return i;
         }
     }
 
