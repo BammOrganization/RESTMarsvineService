@@ -111,6 +111,29 @@ namespace RESTMarsvineService
 
             return i;
         }
+
+        public Userinfo GetUserById(string id)
+        {
+            string sqlstring = $"Select * from UserTable where Id = {id}";
+
+            using (var sqlConnection = new SqlConnection(GetConnectionString))
+            {
+                sqlConnection.Open();
+                using(var sqlcommand = new SqlCommand(sqlstring, sqlConnection))
+                {
+                    using(var reader = sqlcommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var _users = ReadUserinfo(reader);
+                            return _users;
+                            
+                        }
+                        return null;
+                    }
+                }
+            }
+        }
     }
 
 }

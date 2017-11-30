@@ -20,12 +20,13 @@ namespace RESTMarsvineService
         [WebInvoke(Method = "PUT", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "Contactinfo/{id}")]
         void UpdateMail(string id, Userinfo user);
 
-
-
-
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "Contactinfo/")]
         IList<Userinfo> GetAllUsers();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "Contactinfo/{id}")]
+        Userinfo GetUserById(string id);
 
         
 
