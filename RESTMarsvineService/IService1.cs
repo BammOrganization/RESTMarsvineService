@@ -17,7 +17,7 @@ namespace RESTMarsvineService
         IList<Measurements> GetAllMeasurements();
 
         [OperationContract]
-        [WebInvoke(Method = "PUT", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "Contactinfo/{id}")]
+        [WebInvoke(Method = "PUT", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "UpdateContactinfo/{id}")]
         void UpdateMail(string id, Userinfo user);
 
         [OperationContract]
