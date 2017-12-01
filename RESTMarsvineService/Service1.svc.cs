@@ -43,25 +43,23 @@ namespace RESTMarsvineService
 
 
 
-        public void UpdateMail(string id, Userinfo user)
+        public int UpdateMail(string id, Userinfo user)
         {
             SqlConnection conn = new SqlConnection(GetConnectionString);
             conn.Open();
 
 
 
-            string sql = $"UPDATE Apartment SET Id = @id, Mail = @mail, PhoneNo = @phone WHERE id = '{id}'";
+            string sql = $"UPDATE UserTable SET Mail = @mail, PhoneNo = @phone WHERE id = {id}";
 
             SqlCommand command = new SqlCommand(sql, conn);
-            command.Parameters.AddWithValue("@id", user.Id);
+
             command.Parameters.AddWithValue("@mail", user.Mail);
             command.Parameters.AddWithValue("@phone", user.PhoneNo);
+            return command.ExecuteNonQuery();
+            
 
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                var _Userinfo = ReadMeasurements(reader);
-            }
+
         }
 
         public IList<Userinfo> GetAllUsers()
