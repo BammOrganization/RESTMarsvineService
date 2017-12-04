@@ -28,7 +28,12 @@ namespace RESTMarsvineService
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "Contactinfo/{id}")]
         Userinfo GetUserById(string id);
 
-        
 
+        //[OperationContract]
+        //[WebInvoke(Method = "DELETE",
+        //    RequestFormat = WebMessageFormat.Json,
+        //    ResponseFormat = WebMessageFormat.Json,
+        //    UriTemplate = "apartment/{id}")]
+        //void Deleteaparment(string id);
     }
 }
