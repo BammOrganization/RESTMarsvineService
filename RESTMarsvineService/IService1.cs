@@ -29,11 +29,11 @@ namespace RESTMarsvineService
         Userinfo GetUserById(string id);
 
 
-        //[OperationContract]
-        //[WebInvoke(Method = "DELETE",
-        //    RequestFormat = WebMessageFormat.Json,
-        //    ResponseFormat = WebMessageFormat.Json,
-        //    UriTemplate = "apartment/{id}")]
-        //void Deleteaparment(string id);
+        [OperationContract]
+        [WebInvoke(Method = "DELETE",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "Measurements/{id}")]
+        void DeleteMeasurements(string id);
     }
 }

@@ -86,19 +86,19 @@ namespace RESTMarsvineService
         }
 
 
-        //public void Deleteaparment(string id)
-        //{
-        //    var sqlstring = $"DELETE FROM Apartments where id = {id}";
+        public void DeleteMeasurements(string id)
+        {
+            var sqlstring = $"DELETE FROM Measurement where id = {id}";
 
-        //    using (var sqlConnection = new SqlConnection(GetConnectionString()))
-        //    {
-        //        sqlConnection.Open();
-        //        using (var sqlcommand = new SqlCommand(sqlstring, sqlConnection))
-        //        {
-        //            sqlcommand.ExecuteNonQuery();
-        //        }
-        //    }
-        //}
+            using (var sqlConnection = new SqlConnection(GetConnectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlcommand = new SqlCommand(sqlstring, sqlConnection))
+                {
+                    sqlcommand.ExecuteNonQuery();
+                }
+            }
+        }
 
         private static Measurements ReadMeasurements(IDataRecord reader)
         {
