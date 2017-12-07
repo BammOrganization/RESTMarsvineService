@@ -40,7 +40,28 @@ namespace RESTMarsvineService
         }
 
 
+        public IList<Measurements> GetAllMeasurementsOver()
+        {
+            const string sqlstring = "SELECT * from dbo.Measurement  WHERE dB>=50 order by Time DESC";
 
+            using (var sqlConnection = new SqlConnection(GetConnectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = new SqlCommand(sqlstring, sqlConnection))
+                {
+                    using (var reader = sqlCommand.ExecuteReader())
+                    {
+                        var liste = new List<Measurements>();
+                        while (reader.Read())
+                        {
+                            var _measurements = ReadMeasurements(reader);
+                            liste.Add(_measurements);
+                        }
+                        return liste;
+                    }
+                }
+            }
+        }
 
 
         public int UpdateMail(string id, Userinfo user)
