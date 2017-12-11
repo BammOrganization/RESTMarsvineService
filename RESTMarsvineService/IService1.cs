@@ -38,6 +38,6 @@ namespace RESTMarsvineService
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             UriTemplate = "Measurements/{id}")]
-        void DeleteMeasurements(string id);
+        int DeleteMeasurements(string id);
     }
 }

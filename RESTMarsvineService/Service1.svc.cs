@@ -18,25 +18,25 @@ namespace RESTMarsvineService
 
         public IList<Measurements> GetAllMeasurements()
         {
-                const string sqlstring = "SELECT * from dbo.Measurement order by Time DESC";
+            const string sqlstring = "SELECT * from dbo.Measurement order by Time DESC";
 
-                using (var sqlConnection = new SqlConnection(GetConnectionString))
+            using (var sqlConnection = new SqlConnection(GetConnectionString))
+            {
+                sqlConnection.Open();
+                using (var sqlCommand = new SqlCommand(sqlstring, sqlConnection))
                 {
-                    sqlConnection.Open();
-                    using (var sqlCommand = new SqlCommand(sqlstring, sqlConnection))
+                    using (var reader = sqlCommand.ExecuteReader())
                     {
-                        using (var reader = sqlCommand.ExecuteReader())
+                        var liste = new List<Measurements>();
+                        while (reader.Read())
                         {
-                            var liste = new List<Measurements>();
-                            while (reader.Read())
-                            {
-                                var _measurements = ReadMeasurements(reader);
-                                liste.Add(_measurements);
-                            }
-                            return liste;
+                            var _measurements = ReadMeasurements(reader);
+                            liste.Add(_measurements);
                         }
+                        return liste;
                     }
                 }
+            }
         }
 
 
@@ -78,7 +78,7 @@ namespace RESTMarsvineService
             command.Parameters.AddWithValue("@mail", user.Mail);
             command.Parameters.AddWithValue("@phone", user.PhoneNo);
             return command.ExecuteNonQuery();
-            
+
 
 
         }
@@ -107,7 +107,7 @@ namespace RESTMarsvineService
         }
 
 
-        public void DeleteMeasurements(string id)
+        public int DeleteMeasurements(string id)
         {
             var sqlstring = $"DELETE FROM Measurement where id = {id}";
 
@@ -116,7 +116,7 @@ namespace RESTMarsvineService
                 sqlConnection.Open();
                 using (var sqlcommand = new SqlCommand(sqlstring, sqlConnection))
                 {
-                    sqlcommand.ExecuteNonQuery();
+                    return sqlcommand.ExecuteNonQuery();
                 }
             }
         }
@@ -153,15 +153,15 @@ namespace RESTMarsvineService
             using (var sqlConnection = new SqlConnection(GetConnectionString))
             {
                 sqlConnection.Open();
-                using(var sqlcommand = new SqlCommand(sqlstring, sqlConnection))
+                using (var sqlcommand = new SqlCommand(sqlstring, sqlConnection))
                 {
-                    using(var reader = sqlcommand.ExecuteReader())
+                    using (var reader = sqlcommand.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             var _users = ReadUserinfo(reader);
                             return _users;
-                            
+
                         }
                         return null;
                     }
