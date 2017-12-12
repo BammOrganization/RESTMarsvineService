@@ -15,6 +15,7 @@ namespace RESTMarsvineService.Tests
         public void DeleteMeasurementsTest()
         {
             //arrange
+            //husk at ændre id under test
             string id = "1";
             var delete = new Service1();
             //act

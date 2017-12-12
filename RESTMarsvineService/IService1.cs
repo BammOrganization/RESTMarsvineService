@@ -17,7 +17,9 @@ namespace RESTMarsvineService
         IList<Measurements> GetAllMeasurements();
 
         [OperationContract]
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "Measurements/Above")]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "Measurements/Above")]
         IList<Measurements> GetAllMeasurementsOver();
 
         [OperationContract]
